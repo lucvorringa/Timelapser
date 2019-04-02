@@ -21,7 +21,7 @@ public class GUI extends JFrame{
 		JButton BTNimages = new JButton("Choose");
 		JPanel JPnorth = new JPanel();
 		
-		//BorderLayout North
+		//BorderLayout North	
 		JPnorth.add(LBimages);
 		JPnorth.add(BTNimages);
 		this.getContentPane().add(JPnorth, BorderLayout.NORTH);
