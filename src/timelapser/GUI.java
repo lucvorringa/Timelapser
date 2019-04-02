@@ -25,7 +25,6 @@ import org.jcodec.common.model.Rational;
 
 public class GUI extends JFrame{
 	public static int ImagesAmount = 0;
-	public static int VideoLenght;
 	public static File[] files;
 	
 	
@@ -35,27 +34,25 @@ public class GUI extends JFrame{
 		this.setSize(1000, 1000);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
+		//Objects for selecting the images
 		JLabel LBimages = new JLabel("Images:");
 		JButton BTNimages = new JButton("Choose");
 		BTNimages.addActionListener(new ChooseImagesListener());
-		
-		JLabel LBfps = new JLabel("FPS:");
-		JTextField TFfps = new JTextField("");
-		TFfps.setPreferredSize( new Dimension( 100, 24 ) );
-		
-		JButton BTNgo = new JButton("GO");
-		BTNgo.addActionListener(new goListener());
-		
-		
-		//JPanel Image Selector	
 		JPanel JPimageSelector = new JPanel();
 		JPimageSelector.add(LBimages);
 		JPimageSelector.add(BTNimages);
 		
-		//JPanel FPS
+		//Objects for selecting the FPS
+		JLabel LBfps = new JLabel("FPS:");
+		JTextField TFfps = new JTextField("");
+		TFfps.setPreferredSize( new Dimension( 100, 24 ) );
 		JPanel JPfps = new JPanel();
 		JPfps.add(LBfps);
 		JPfps.add(TFfps);
+		
+		//Button for starting the converting prozess
+		JButton BTNgo = new JButton("GO");
+		BTNgo.addActionListener(new goListener());
 		
 		//BorderLayout
 		this.getContentPane().add(JPimageSelector, BorderLayout.NORTH);
@@ -70,7 +67,15 @@ public class GUI extends JFrame{
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			
+			if(TFfps != null){
+				if(ImagesAmount != null){
+					//Convert the images to video
+				}else {
+					//PopUp please choose Images	
+				}
+			}else {
+				//PopUp set the FPS	
+			}
 			
 		}
 		
@@ -78,12 +83,12 @@ public class GUI extends JFrame{
 	class ChooseImagesListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-	        JFileChooser chooser = new JFileChooser();
-	        chooser.setMultiSelectionEnabled(true);
-	        if(chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION){
-	        	files = chooser.getSelectedFiles();
-	        	ImagesAmount = files.length;
-	        }
+	        	JFileChooser chooser = new JFileChooser();
+	        	chooser.setMultiSelectionEnabled(true);
+	        	if(chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION){
+	        		files = chooser.getSelectedFiles();
+	        		ImagesAmount = files.length;
+	        	}
 		}
 	}
 	
