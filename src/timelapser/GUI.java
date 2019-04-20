@@ -215,9 +215,15 @@ public class GUI extends JFrame{
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			JFileChooser destinationChooser = new JFileChooser();
+			destinationChooser.setMultiSelectionEnabled(false);
 			if(destinationChooser.showSaveDialog(null) == JFileChooser.APPROVE_OPTION) {
-				destination = destinationChooser.getSelectedFile().getAbsolutePath();
-				//LBchooseDestinationStatus.setText("OK");
+				if(destinationChooser.getSelectedFile().toString().endsWith(".mp4")) {
+					destination = destinationChooser.getSelectedFile().getAbsolutePath();
+				}else {
+					JOptionPane.showMessageDialog(JPBody,"File needs to be .mp4","Error",JOptionPane.ERROR_MESSAGE);
+				}
+				
+				
 			}
 		}
 		
