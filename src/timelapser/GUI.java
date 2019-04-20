@@ -31,6 +31,7 @@ import org.jcodec.api.awt.AWTSequenceEncoder;
 
 
 public class GUI extends JFrame{
+	public boolean ImagesChosen = false;
 	
 	public boolean isInt(String s) {
 		try{
@@ -56,20 +57,20 @@ public class GUI extends JFrame{
 	JPanel JPBody = new JPanel();
 	
 	//Objects for selecting the images
-	JLabel LBimages = new JLabel("Images:");
-	JButton BTNimages = new JButton("Choose");
+	JLabel LBimages = new JLabel("Bilder(.jpg):");
+	JButton BTNimages = new JButton("auswählen");
 	JPanel JPimageSelector = new JPanel();
 	//JLabel LBchooseImagesStatus = new JLabel("Please Choose!");
 	
 	//Objects Destination Path
-	JLabel LBdestination = new JLabel("Destination:");
-	JButton BTNdestination = new JButton("Choose");
+	JLabel LBdestination = new JLabel("Ziel(.mp4):");
+	JButton BTNdestination = new JButton("auswählen");
 	JPanel JPdestination = new JPanel();
 	//JLabel LBchooseDestinationStatus = new JLabel("Please Choose!");
 	
 	//Objects for selecting the FPS
 	JLabel LBfps = new JLabel("FPS:");
-	JTextField TFfps = new JTextField("25");
+	JTextField TFfps = new JTextField("2");
 	JPanel JPfps = new JPanel();
 	
 	//Button for starting the converting prozess
@@ -120,11 +121,11 @@ public class GUI extends JFrame{
 		InitListener();
 		
 		//creating the tabs
-		tabs.addTab("Create timelapse", JPBody);
-		tabs.addTab("About", JPabout);
+		tabs.addTab("Timelapse erstellen", JPBody);
+		tabs.addTab("Über", JPabout);
 		
 		//init
-		this.setTitle("timelapser");
+		this.setTitle("Timelapser");
 		this.setVisible(true);
 		this.setSize(300,300);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -166,13 +167,13 @@ public class GUI extends JFrame{
 			
 			
 			if(destination == null) {
-				JOptionPane.showMessageDialog(JPBody,"You must first select the destination","Error",JOptionPane.ERROR_MESSAGE);
-			} if(Images.get(0)== null) {
-				JOptionPane.showMessageDialog(JPBody,"You must first choose the images","Error",JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(JPBody,"Bitte wähle ein Ziel aus","Error",JOptionPane.ERROR_MESSAGE);
+			} if(ImagesChosen==false) {
+				JOptionPane.showMessageDialog(JPBody,"Bitte wähle die Bilder aus ","Error",JOptionPane.ERROR_MESSAGE);
 			} if (isInt(TFfps.getText())==false) {
-				JOptionPane.showMessageDialog(JPBody,"The FPS are in the wrong format","Error",JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(JPBody,"Die FPS sind im falschen Format","Error",JOptionPane.ERROR_MESSAGE);
 			}
-			if(destination !=null &&isInt(TFfps.getText())==true&&Images.get(0).exists()==true) {
+			if(destination !=null &&isInt(TFfps.getText())==true&&ImagesChosen==true) {
 				try {
 					AWTSequenceEncoder enc = AWTSequenceEncoder.createSequenceEncoder(new File(destination),Integer.parseInt(TFfps.getText()));
 					for(File i : Images) {
@@ -187,10 +188,11 @@ public class GUI extends JFrame{
 		}
 	}
 	class ChooseImagesListener implements ActionListener {
+		
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			if(destination==null) {
-				JOptionPane.showMessageDialog(JPBody,"You must first select the destination","Error",JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(JPBody,"Bitte wähle ein Ziel aus","Error",JOptionPane.ERROR_MESSAGE);
 			}else {
 				JFileChooser chooser = new JFileChooser();
 	        	chooser.setMultiSelectionEnabled(true);
@@ -202,6 +204,7 @@ public class GUI extends JFrame{
 	        		for(File i : chooser.getSelectedFiles()) {
 	        			Images.add(i.getAbsoluteFile());
 	        		}
+	        		ImagesChosen=true;
 	        		
 	        		//LBchooseImagesStatus.setText("OK");
 	        		
@@ -220,7 +223,7 @@ public class GUI extends JFrame{
 				if(destinationChooser.getSelectedFile().toString().endsWith(".mp4")) {
 					destination = destinationChooser.getSelectedFile().getAbsolutePath();
 				}else {
-					JOptionPane.showMessageDialog(JPBody,"File needs to be .mp4","Error",JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(JPBody,"Datei muss eine .mp4 sein","Error",JOptionPane.ERROR_MESSAGE);
 				}
 				
 				
