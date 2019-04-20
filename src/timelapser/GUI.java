@@ -80,7 +80,7 @@ public class GUI extends JFrame{
 		//About section
 		JPabout.add(AboutscrollPane);
 		TAabout.setEditable(false);
-		TAabout.setText("(C) 2019 Luca Vornheder  \n This Software is using the JCodec libary. \n\n\n "
+		TAabout.setText("(C) 2019 Luca Vornheder  \n Bugs/Fehler: bug.timelapser@gmail.com\n\n\n This Software is using the JCodec libary. \n\n\n "
 				+ "Copyright 2008-2017 JCodecProject \r\n" + 
 				"\r\n" + 
 				"Redistribution  and  use  in   source  and   binary   forms,  with  or  without \r\n" + 
