@@ -2,6 +2,7 @@ package timelapser;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,6 +13,7 @@ import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 import javax.imageio.stream.ImageInputStream;
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -56,11 +58,13 @@ public class GUI extends JFrame{
 	//The Main JPanel
 	JPanel JPBody = new JPanel();
 	
+	//Copyright Label
+	JLabel LBcopyright = new JLabel("(C)2019 Luca Vornheder");
+	
 	//Objects for selecting the images
 	JLabel LBimages = new JLabel("Bilder(.jpg):");
 	JButton BTNimages = new JButton("auswählen");
 	JPanel JPimageSelector = new JPanel();
-	//JLabel LBchooseImagesStatus = new JLabel("Please Choose!");
 	
 	//Objects Destination Path
 	JLabel LBdestination = new JLabel("Ziel(.mp4):");
@@ -129,9 +133,9 @@ public class GUI extends JFrame{
 		this.setVisible(true);
 		this.setSize(300,300);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-		
+
 		//set GridLayout
-		JPBody.setLayout(new GridLayout(0,1));
+		JPBody.setLayout(new BoxLayout(JPBody, BoxLayout.Y_AXIS));
 		this.getContentPane().add(tabs);
 		
 		//Objects for selecting the images
@@ -155,6 +159,7 @@ public class GUI extends JFrame{
 		JPBody.add(JPdestination);
 		JPBody.add(JPimageSelector);
 		JPBody.add(BTNgo);
+		JPBody.add(LBcopyright);
 		
 	}
 	
