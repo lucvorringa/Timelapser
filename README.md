@@ -3,5 +3,9 @@
   <img src="https://github.com/lucvorringa/Timelapser/blob/master/docs/screenshot.PNG?raw=true" alt="Screenshot">
   <br />
   <p><h2>Version 1.2 : <a href="https://github.com/lucvorringa/Timelapser/releases/download/1.2/timelapser1.2.jar" title="Download">Download</a></p></h2>
+  
+  <br />
+  <br />
+  This Software is using the JCodec Libary
  
 
